@@ -129,9 +129,9 @@ app_license = "mit"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-# 	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Accounting Period": "batasku_custom.overrides.accounting_period.CustomAccountingPeriod"
+}
 
 # Document Events
 # ---------------
@@ -256,10 +256,50 @@ fixtures = [
 
 # hooks.py
 
+# Document Events for Transaction Restrictions in Closed Periods
+# Requirements: 5.1, 5.2, 5.3, 5.4, 5.5
 doc_events = {
     "Purchase Invoice": {
         "before_insert": "batasku_custom.purchase_invoice_hooks.before_insert_fill_details",
-        "before_validate": "batasku_custom.purchase_invoice_hooks.before_validate_fill_details"
+        "before_validate": "batasku_custom.purchase_invoice_hooks.before_validate_fill_details",
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    "Sales Invoice": {
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    "Sales Order": {
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    "Journal Entry": {
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    "Purchase Order": {
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    "Purchase Receipt": {
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    "Payment Entry": {
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    "Stock Entry": {
+        "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
     }
 }
 

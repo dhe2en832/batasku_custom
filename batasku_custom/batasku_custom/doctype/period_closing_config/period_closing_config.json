@@ -1,0 +1,171 @@
+{
+ "actions": [],
+ "creation": "2026-02-21 04:55:39.490434",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "retained_earnings_account",
+  "section_break_1",
+  "enable_bank_reconciliation_check",
+  "enable_draft_transaction_check",
+  "enable_unposted_transaction_check",
+  "enable_sales_invoice_check",
+  "enable_purchase_invoice_check",
+  "enable_inventory_check",
+  "enable_payroll_check",
+  "section_break_3",
+  "closing_role",
+  "reopen_role",
+  "section_break_4",
+  "reminder_days_before_end",
+  "escalation_days_after_end",
+  "enable_email_notifications",
+  "column_break_2"
+ ],
+ "fields": [
+  {
+   "description": "Account to which net income/loss will be transferred during period closing",
+   "fieldname": "retained_earnings_account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Retained Earnings Account",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_1",
+   "fieldtype": "Section Break",
+   "label": "Validation Settings"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_bank_reconciliation_check",
+   "fieldtype": "Check",
+   "label": "Enable Bank Reconciliation Check"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_draft_transaction_check",
+   "fieldtype": "Check",
+   "label": "Enable Draft Transaction Check"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_unposted_transaction_check",
+   "fieldtype": "Check",
+   "label": "Enable Unposted Transaction Check"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_sales_invoice_check",
+   "fieldtype": "Check",
+   "label": "Enable Sales Invoice Check"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_purchase_invoice_check",
+   "fieldtype": "Check",
+   "label": "Enable Purchase Invoice Check"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_inventory_check",
+   "fieldtype": "Check",
+   "label": "Enable Inventory Check"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_payroll_check",
+   "fieldtype": "Check",
+   "label": "Enable Payroll Check"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Role Settings"
+  },
+  {
+   "default": "Accounts Manager",
+   "description": "Role that can close accounting periods",
+   "fieldname": "closing_role",
+   "fieldtype": "Link",
+   "label": "Closing Role",
+   "options": "Role"
+  },
+  {
+   "default": "Accounts Manager",
+   "description": "Role that can reopen closed periods",
+   "fieldname": "reopen_role",
+   "fieldtype": "Link",
+   "label": "Reopen Role",
+   "options": "Role"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break",
+   "label": "Notification Settings"
+  },
+  {
+   "default": "3",
+   "description": "Number of days before period end to send reminder",
+   "fieldname": "reminder_days_before_end",
+   "fieldtype": "Int",
+   "label": "Reminder Days Before End"
+  },
+  {
+   "default": "7",
+   "description": "Number of days after period end to send escalation notification",
+   "fieldname": "escalation_days_after_end",
+   "fieldtype": "Int",
+   "label": "Escalation Days After End"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_email_notifications",
+   "fieldtype": "Check",
+   "label": "Enable Email Notifications"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-02-21 04:55:39.490434",
+ "modified_by": "Administrator",
+ "module": "Batasku Custom",
+ "name": "Period Closing Config",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Accounts Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
