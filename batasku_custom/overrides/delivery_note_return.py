@@ -26,6 +26,10 @@ def validate_delivery_note_return(doc, method=None):
     if not doc.is_return:
         return
     
+    print("\n" + "="*80)
+    print(f"=== VALIDATE DELIVERY NOTE RETURN: {doc.name} ===")
+    print("="*80)
+    
     frappe.logger().info(f"=== VALIDATE DELIVERY NOTE RETURN: {doc.name} ===")
     
     # Validate return against exists
@@ -45,7 +49,12 @@ def validate_delivery_note_return(doc, method=None):
         }
     
     # Validate return items and populate company_total_stock
+    print(f"\nProcessing {len(doc.items)} items...")
     for item in doc.items:
+        print(f"\n  Item: {item.item_code}")
+        print(f"    Warehouse: {item.warehouse}")
+        print(f"    Current company_total_stock: {item.company_total_stock or 0}")
+        
         frappe.logger().info(f"Processing item {item.item_code} at warehouse {item.warehouse}")
         
         # Populate company_total_stock from Bin
@@ -61,14 +70,18 @@ def validate_delivery_note_return(doc, method=None):
                 
                 if bin_data and len(bin_data) > 0:
                     item.company_total_stock = bin_data[0].actual_qty or 0
+                    print(f"    ✓ Set company_total_stock: {item.company_total_stock}")
                     frappe.logger().info(f"✓ Set company_total_stock for {item.item_code}: {item.company_total_stock}")
                 else:
                     item.company_total_stock = 0
+                    print(f"    ⚠ No Bin record found, set to 0")
                     frappe.logger().warning(f"⚠ No Bin record found for {item.item_code} at {item.warehouse}, setting to 0")
             except Exception as e:
-                frappe.logger().error(f"✗ Failed to get stock for {item.item_code}: {str(e)}")
                 item.company_total_stock = 0
+                print(f"    ✗ Error: {str(e)}")
+                frappe.logger().error(f"✗ Failed to get stock for {item.item_code}: {str(e)}")
         else:
+            print(f"    ⚠ Missing item_code or warehouse")
             frappe.logger().warning(f"⚠ Missing item_code or warehouse for row {item.idx}")
         
         # Validate return reason is selected
@@ -110,6 +123,9 @@ def validate_delivery_note_return(doc, method=None):
                 ).format(item.idx, return_qty, remaining_qty, item.item_code, 
                         original_qty, total_returned))
     
+    print("\n" + "="*80)
+    print(f"=== VALIDATION COMPLETE FOR: {doc.name} ===")
+    print("="*80 + "\n")
     frappe.logger().info(f"=== VALIDATION COMPLETE FOR: {doc.name} ===")
 
 def on_submit_delivery_note_return(doc, method=None):
