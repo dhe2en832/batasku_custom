@@ -300,6 +300,17 @@ doc_events = {
         "validate": "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
         "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
         "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
+    },
+    # Delivery Note Return Hooks
+    "Delivery Note": {
+        "validate": [
+            "batasku_custom.accounting_period_restrictions.validate_transaction_against_closed_period",
+            "batasku_custom.overrides.delivery_note_return.validate_delivery_note_return"
+        ],
+        "on_submit": "batasku_custom.overrides.delivery_note_return.on_submit_delivery_note_return",
+        "on_cancel": "batasku_custom.overrides.delivery_note_return.on_cancel_delivery_note_return",
+        "before_cancel": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion",
+        "on_trash": "batasku_custom.accounting_period_restrictions.validate_transaction_deletion"
     }
 }
 
