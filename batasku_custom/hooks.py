@@ -248,6 +248,7 @@ override_doctype_class = {
 # ignore_translatable_strings_from = []
 
 fixtures = [
+    {"dt": "Module Def", "filters": [["module_name", "=", "Batasku Custom"]]},
     {"dt": "Custom Field", "filters": [["module", "=", "Batasku Custom"]]},
     {"dt": "Property Setter", "filters": [["module", "=", "Batasku Custom"]]},
     {"dt": "Client Script", "filters": [["module", "=", "Batasku Custom"]]},

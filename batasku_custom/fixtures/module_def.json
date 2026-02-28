@@ -1,0 +1,17 @@
+[
+ {
+  "_assign": null,
+  "_comments": null,
+  "_liked_by": null,
+  "_user_tags": null,
+  "app_name": "batasku_custom",
+  "custom": 0,
+  "docstatus": 0,
+  "doctype": "Module Def",
+  "modified": "2026-02-05 07:40:21.747233",
+  "module_name": "Batasku Custom",
+  "name": "Batasku Custom",
+  "package": null,
+  "restrict_to_domain": null
+ }
+]
